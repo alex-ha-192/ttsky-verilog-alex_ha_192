@@ -16,7 +16,22 @@ module tt_um_alex_ha_192 (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-  assign uo_out = ui_in[3:0] * ui_in[7:4];
+  logic high_half;
+
+  always @(posedge clk) begin
+    if (!rst_n) begin
+      high_half = 0;
+    end
+    else begin
+      high_half = ~high_half;
+    end
+  end
+
+  logic [15:0] register;
+
+  assign register = ui_in * uio_in;
+
+  assign uo_out = (high_half) ? register[15:8] : register[7:0];
   assign uio_out = 0;
   assign uio_oe  = 0;
 

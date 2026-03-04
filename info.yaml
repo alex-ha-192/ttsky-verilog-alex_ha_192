@@ -3,7 +3,7 @@ project:
   title:        "alex_ha_192"      # Project title
   author:       "Alex Hegedus-Adkin"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Currently does self-promo"      # One line description of what your project does
+  description:  "8 x 8-bit -> 16-bit multiplier"      # One line description of what your project does
   language:     "SystemVerilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -23,14 +23,14 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "in_1[0]"
+  ui[1]: "in_1[1]"
+  ui[2]: "in_1[2]"
+  ui[3]: "in_1[3]"
+  ui[4]: "in_1[4]"
+  ui[5]: "in_1[5]"
+  ui[6]: "in_1[6]"
+  ui[7]: "in_1[7]"
 
   # Outputs
   uo[0]: "out[0]"
@@ -43,14 +43,14 @@ pinout:
   uo[7]: "out[7]"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  uio[0]: "in_2[0]"
+  uio[1]: "in_2[1]"
+  uio[2]: "in_2[2]"
+  uio[3]: "in_2[3]"
+  uio[4]: "in_2[4]"
+  uio[5]: "in_2[5]"
+  uio[6]: "in_2[6]"
+  uio[7]: "in_2[7]"
 
 # Do not change!
 yaml_version: 6

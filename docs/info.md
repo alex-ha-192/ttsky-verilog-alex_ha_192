@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-It's an FSM.
+8-bit multiplier, goes to 16-bit internally, then outputs over the course of two cycles.
 
 ## How to test
 
-It's an FSM.
+Right now we can feasibly test 65536 test cases, this will have to change if we increase the size of the thing.
 
 ## External hardware
 
-There isn't any.
+There isn't any for the time being. Maybe a display? That would need extra cycles though.
