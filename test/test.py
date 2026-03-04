@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import cocotb
+import random
 from cocotb.clock import Clock
 from cocotb.triggers import ClockCycles
 
@@ -34,6 +35,24 @@ async def test_project(dut):
     # The following assersion is just an example of how to check the output values.
     # Change it to match the actual expected output of your module:
     assert dut.uo_out.value == 48
+
+    for num_one in range (0, 16):
+        for num_two in range (0, 16):
+            target = num_one * num_two
+
+            str_binary = "0b" + bin(num_one)[2:].zfill(4) + bin(num_two)[2:].zfill(4)
+
+            num_binary = int(str_binary, 2)
+            print("1: " + str(num_one) + ", 2: " + str(num_two) + " => bin: " + str_binary + " or " + str(num_binary))
+            print("Target: " + str(target))
+
+            dut.ui_in.value = num_binary
+
+            await ClockCycles(dut.clk, 1)
+
+            print("Received: " + str(dut.uo_out.value))
+
+            assert dut.uo_out.value == target
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
