@@ -27,32 +27,35 @@ async def test_project(dut):
     dut._log.info("Test project behavior")
 
     # Set the input values you want to test
-    dut.ui_in.value = 104
+    #dut.ui_in.value = 104
 
     # Wait for one clock cycle to see the output values
-    await ClockCycles(dut.clk, 1)
+    #await ClockCycles(dut.clk, 2)
 
     # The following assersion is just an example of how to check the output values.
     # Change it to match the actual expected output of your module:
-    assert dut.uo_out.value == 48
+    #assert dut.uo_out.value == 48
 
-    for num_one in range (0, 16):
-        for num_two in range (0, 16):
+    for num_one in range (0, 256):
+        for num_two in range (0, 256):
             target = num_one * num_two
 
-            str_binary = "0b" + bin(num_one)[2:].zfill(4) + bin(num_two)[2:].zfill(4)
-
-            num_binary = int(str_binary, 2)
-            print("1: " + str(num_one) + ", 2: " + str(num_two) + " => bin: " + str_binary + " or " + str(num_binary))
-            print("Target: " + str(target))
-
-            dut.ui_in.value = num_binary
-
+            dut.ui_in.value = num_one            
+            dut.uio_in.value = num_two
+            dut.rst_n.value = 0
             await ClockCycles(dut.clk, 1)
 
-            print("Received: " + str(dut.uo_out.value))
+            dut.rst_n.value = 1
+            recv_1 = dut.uo_out.value
+            await ClockCycles(dut.clk, 1)
 
-            assert dut.uo_out.value == target
+            recv_2 = dut.uo_out.value
+
+            recv_bin = bin(recv_1)[2:].zfill(8) + bin(recv_2)[2:].zfill(8)
+
+            recv_total = int(recv_bin, 2)
+
+            assert recv_total == target
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
